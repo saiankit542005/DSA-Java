@@ -1,7 +1,8 @@
 package ArrayList.Hard;
 
 import java.util.ArrayList;
-
+//Find if any Pair in a Sorted & Rotated ArrayList has a target Sum.
+// Solved this quesion using 2 Pointer Approach - > TC = O(n)
 public class PairSum {
     public static boolean twoPairSum(ArrayList<Integer> list, int target) {
         int bp = 0; // breaking point
