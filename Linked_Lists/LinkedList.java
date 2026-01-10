@@ -12,10 +12,12 @@ public class LinkedList {
 
     public static Node head;
     public static Node tail;
+    public static int size;
 
     public void addFirst(int data) { // TC = O(1)
         // step 1 = create new Node
         Node newNode = new Node(data);
+        size++;
         // step 2 = check list is empty or not.
         if (head == null) {
             head = tail = newNode;
@@ -31,7 +33,7 @@ public class LinkedList {
     public void addLast(int data) { // TC = O(1)
         // step 1 = create new Node
         Node newNode = new Node(data);
-
+           size++;
         // step 2 = check list is empty or not.
         if (head == null) {
             head = tail = newNode;
@@ -53,18 +55,22 @@ public class LinkedList {
         System.out.println("null");
     }
 
-    public void addMiddle(int data,int idx){
+    public void addMiddle(int data, int idx) {
+         if (idx == 0) {
+            addFirst(data);
+            return;
+        }
         Node newNode = new Node(data);
+        size++;
         Node temp = head;
         int i = 0;
 
-        while(i < idx-1){
+        while (i < idx - 1) {
             temp = temp.next;
             i++;
         }
-
         // Now, i = idx - 1 ,temp = idx se phle wala (previous)
-        // 1 first 
+        // 1 first
         newNode.next = temp.next;
         // 2.secons
         temp.next = newNode;
@@ -77,7 +83,8 @@ public class LinkedList {
         ll.addFirst(10);
         ll.addLast(30);
         ll.addLast(40);
-        ll.addMiddle(25,2);
+        ll.addMiddle(25, 2);
         ll.printLL();
+        System.out.println(size);
     }
 }
