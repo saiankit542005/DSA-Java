@@ -33,7 +33,7 @@ public class LinkedList {
     public void addLast(int data) { // TC = O(1)
         // step 1 = create new Node
         Node newNode = new Node(data);
-           size++;
+        size++;
         // step 2 = check list is empty or not.
         if (head == null) {
             head = tail = newNode;
@@ -56,7 +56,7 @@ public class LinkedList {
     }
 
     public void addMiddle(int data, int idx) {
-         if (idx == 0) {
+        if (idx == 0) {
             addFirst(data);
             return;
         }
@@ -76,6 +76,22 @@ public class LinkedList {
         temp.next = newNode;
     }
 
+    public int removeFirst() {
+        if(size == 0){
+            System.out.println("LL is empty");
+            return Integer.MIN_VALUE;
+        }else if(size == 1){
+            int val = head.data;
+            head = tail = null;
+            size = 0;
+            return val;
+        }
+        int val = head.data;
+        head = head.next;
+        size--;
+        return val;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.printLL();
@@ -85,6 +101,8 @@ public class LinkedList {
         ll.addLast(40);
         ll.addMiddle(25, 2);
         ll.printLL();
-        System.out.println(size);
+        System.out.println("Remove Node data : "+ll.removeFirst());
+        ll.printLL();
+        System.out.println("Size of Linked List : "+size);
     }
 }
