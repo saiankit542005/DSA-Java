@@ -113,6 +113,42 @@ public class LinkedList {
         return val;
     }
 
+    public int removeMiddle(int idx) {
+
+        // case 1: empty list
+        if (size == 0) {
+            System.out.println("LL is empty");
+            return Integer.MIN_VALUE;
+        }
+        // case 2:  // invalid index
+        if (idx < 0 || idx >= size) {
+            System.out.println("Invalid index");
+            return Integer.MIN_VALUE;
+        }
+
+        // case 3: first node
+        if (idx == 0) {
+            return removeFirst();
+        }
+
+        // case 4: last node
+        if (idx == size - 1) {
+            return removeLast();
+        }
+
+        // case 5: middle node
+        Node prev = head;
+        for (int i = 0; i < idx - 1; i++) {
+            prev = prev.next;
+        }
+
+        int val = prev.next.data; // node to be deleted
+        prev.next = prev.next.next; // link bypass
+        size--;
+
+        return val;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.printLL();
@@ -125,6 +161,8 @@ public class LinkedList {
         System.out.println("Remove First Node data : " + ll.removeFirst());
         ll.printLL();
         System.out.println("Remove Last Node data : " + ll.removeLast());
+        ll.printLL();
+       System.out.println("Remove Middle Node data : "+ ll.removeMiddle(1));
         ll.printLL();
         System.out.println("Size of Linked List : " + size);
     }
