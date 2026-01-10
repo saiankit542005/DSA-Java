@@ -1,4 +1,3 @@
-package Linked_Lists;
 
 public class LinkedList {
     public static class Node {
@@ -54,16 +53,31 @@ public class LinkedList {
         System.out.println("null");
     }
 
+    public void addMiddle(int data,int idx){
+        Node newNode = new Node(data);
+        Node temp = head;
+        int i = 0;
+
+        while(i < idx-1){
+            temp = temp.next;
+            i++;
+        }
+
+        // Now, i = idx - 1 ,temp = idx se phle wala (previous)
+        // 1 first 
+        newNode.next = temp.next;
+        // 2.secons
+        temp.next = newNode;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.printLL();
         ll.addFirst(20);
-        ll.printLL();
         ll.addFirst(10);
-        ll.printLL();
         ll.addLast(30);
-        ll.printLL();
         ll.addLast(40);
+        ll.addMiddle(25,2);
         ll.printLL();
     }
 }
