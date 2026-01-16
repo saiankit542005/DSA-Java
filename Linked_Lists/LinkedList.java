@@ -74,7 +74,7 @@ public class LinkedList {
             i++;
         }
         // Now, i = idx - 1 ,temp = idx se phle wala (previous)
-        // 1 first do this 
+        // 1 first do this
         newNode.next = temp.next;
         // 2.secons do this
         temp.next = newNode;
@@ -87,7 +87,7 @@ public class LinkedList {
         } else if (size == 1) {
             int val = head.data;
             head = tail = null;
-            size = 0; 
+            size = 0;
             return val;
         }
         int val = head.data;
@@ -153,6 +153,21 @@ public class LinkedList {
         return val;
     }
 
+    public int Search(int key) {
+        Node temp = head;
+        int i = 0;
+        while (temp != null) {
+            if (temp.data == key) {
+                // key found
+                return i;
+            }
+            temp = temp.next;
+            i++;
+        }
+        // key not found
+        return -1;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.printLL();
@@ -168,6 +183,9 @@ public class LinkedList {
         ll.printLL();
         System.out.println("Remove Middle Node data : " + ll.removeMiddle(1));
         ll.printLL();
+        System.out.println("Search for key(30) its index : " + ll.Search(30));
+        System.out.println("Search for key(90) its index: " + ll.Search(90));
         System.out.println("Size of Linked List : " + size);
+
     }
 }
