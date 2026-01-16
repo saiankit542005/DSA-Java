@@ -176,7 +176,7 @@ public class LinkedList {
         return -1;
     }
 
-    // ===============resSearch() method=================
+    // ===============recSearch() method=================
     public int recSearch(int key) {
         return helper(head, key);
     }
@@ -197,6 +197,20 @@ public class LinkedList {
         return idx + 1;
     }
 
+    public void reverse() {
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.printLL();
@@ -206,17 +220,21 @@ public class LinkedList {
         ll.addLast(40);
         ll.addMiddle(25, 2);
         ll.printLL();
-        System.out.println("Remove First Node data : " + ll.removeFirst());
-        ll.printLL();
-        System.out.println("Remove Last Node data : " + ll.removeLast());
-        ll.printLL();
-        System.out.println("Remove Middle Node data : " + ll.removeMiddle(1));
-        ll.printLL();
+        // System.out.println("Remove First Node data : " + ll.removeFirst());
+        // ll.printLL();
+        // System.out.println("Remove Last Node data : " + ll.removeLast());
+        // ll.printLL();
+        // System.out.println("Remove Middle Node data : " + ll.removeMiddle(1));
+        // ll.printLL();
         System.out.println("Search for key(30) its index : " + ll.Search(30));
         System.out.println("Search for key(90) its index: " + ll.Search(90));
         System.out.println("recSearch for key(20) its index : " + ll.recSearch(20));
         System.out.println("recSearch for key(50) its index: " + ll.recSearch(50));
         System.out.println("Size of Linked List : " + size);
+
+        ll.reverse();
+        System.out.println("=== Reverse the LinkedList =====");
+        ll.printLL();
 
     }
 }
