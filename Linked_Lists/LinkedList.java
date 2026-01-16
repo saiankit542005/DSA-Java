@@ -14,6 +14,7 @@ public class LinkedList {
     public static Node tail;
     public static int size;
 
+    // ===============addFirst()method=================
     public void addFirst(int data) { // TC = O(1)
         // step 1 = create new Node
         Node newNode = new Node(data);
@@ -30,6 +31,7 @@ public class LinkedList {
         head = newNode;
     }
 
+    // ===============addLast()method=================
     public void addLast(int data) { // TC = O(1)
         // step 1 = create new Node
         Node newNode = new Node(data);
@@ -55,6 +57,7 @@ public class LinkedList {
         System.out.println("null");
     }
 
+    // ===============addMiddle()method=================
     public void addMiddle(int data, int idx) {
         if (idx == 0) {
             addFirst(data);
@@ -80,6 +83,7 @@ public class LinkedList {
         temp.next = newNode;
     }
 
+    // ===============removeFirst()method=================
     public int removeFirst() {
         if (size == 0) {
             System.out.println("LL is empty");
@@ -96,6 +100,7 @@ public class LinkedList {
         return val;
     }
 
+    // ===============removeLast()method=================
     public int removeLast() {
         if (size == 0) {
             System.out.println("LL is empty");
@@ -116,6 +121,8 @@ public class LinkedList {
         size--;
         return val;
     }
+
+    // ===============removeMiddle()method=================
 
     public int removeMiddle(int idx) {
 
@@ -153,6 +160,7 @@ public class LinkedList {
         return val;
     }
 
+    // ===============Search()method=============
     public int Search(int key) {
         Node temp = head;
         int i = 0;
@@ -166,6 +174,27 @@ public class LinkedList {
         }
         // key not found
         return -1;
+    }
+
+    // ===============resSearch() method=================
+    public int recSearch(int key) {
+        return helper(head, key);
+    }
+
+    public int helper(Node head, int key) {
+        if (head == null) {// base case
+            return -1;
+        }
+
+        if (head.data == key) { // key Found
+            return 0;
+        }
+
+        int idx = helper(head.next, key);
+        if (idx == -1) {
+            return -1;
+        }
+        return idx + 1;
     }
 
     public static void main(String[] args) {
@@ -185,6 +214,8 @@ public class LinkedList {
         ll.printLL();
         System.out.println("Search for key(30) its index : " + ll.Search(30));
         System.out.println("Search for key(90) its index: " + ll.Search(90));
+        System.out.println("recSearch for key(20) its index : " + ll.recSearch(20));
+        System.out.println("recSearch for key(50) its index: " + ll.recSearch(50));
         System.out.println("Size of Linked List : " + size);
 
     }
