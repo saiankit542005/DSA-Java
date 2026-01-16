@@ -26,7 +26,7 @@ public class LinkedList {
         // step 3 = newNode ka next -> head
         newNode.next = head; // link
 
-        // step 4 = head = newNode
+        // step 4 = head update,Now head is newNode.
         head = newNode;
     }
 
@@ -42,7 +42,7 @@ public class LinkedList {
         // step 3 = tail ka next -> newNode
         tail.next = newNode;
 
-        // step 4 = Tail ko update karo.
+        // step 4 = Now tail is newNode
         tail = newNode;
     }
 
@@ -64,15 +64,19 @@ public class LinkedList {
         size++;
         Node temp = head;
         int i = 0;
-
+        /*
+         * For Add Node in Middle we need to find second last node of passed index
+         * because Middle Node is Added on passed index.
+         * 
+         */
         while (i < idx - 1) {
             temp = temp.next;
             i++;
         }
         // Now, i = idx - 1 ,temp = idx se phle wala (previous)
-        // 1 first
+        // 1 first do this 
         newNode.next = temp.next;
-        // 2.secons
+        // 2.secons do this
         temp.next = newNode;
     }
 
@@ -83,7 +87,7 @@ public class LinkedList {
         } else if (size == 1) {
             int val = head.data;
             head = tail = null;
-            size = 0;
+            size = 0; 
             return val;
         }
         int val = head.data;
@@ -120,7 +124,7 @@ public class LinkedList {
             System.out.println("LL is empty");
             return Integer.MIN_VALUE;
         }
-        // case 2:  // invalid index
+        // case 2: // invalid index
         if (idx < 0 || idx >= size) {
             System.out.println("Invalid index");
             return Integer.MIN_VALUE;
@@ -162,7 +166,7 @@ public class LinkedList {
         ll.printLL();
         System.out.println("Remove Last Node data : " + ll.removeLast());
         ll.printLL();
-       System.out.println("Remove Middle Node data : "+ ll.removeMiddle(1));
+        System.out.println("Remove Middle Node data : " + ll.removeMiddle(1));
         ll.printLL();
         System.out.println("Size of Linked List : " + size);
     }
