@@ -197,18 +197,49 @@ public class LinkedList {
         return idx + 1;
     }
 
-    public void reverse() {
+    // ===============reverse() method=================
+
+    public void reverse() { // TC = O(n)
         Node prev = null;
         Node curr = tail = head;
         Node next;
 
-        while(curr != null){
+        while (curr != null) {
             next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
         }
         head = prev;
+    }
+
+    // ===============Find & Remove Nth node from End =================
+    public void deleteNthNodeFromEnd(int n) {
+        // caulate size
+        int sz = 0;
+        Node temp = head;
+
+        while (temp != null) {
+            temp = temp.next;
+            sz++;
+        }
+
+        if (n == sz) {
+            head = head.next; // removeFirst
+            return;
+        }
+
+        // size - n
+        int i = 1;
+        int iToFind = sz - n;
+        Node prev = head;
+        while (i < iToFind) {
+            prev = prev.next;
+            i++;
+        }
+
+        prev.next = prev.next.next;
+        return;
     }
 
     public static void main(String[] args) {
@@ -232,9 +263,14 @@ public class LinkedList {
         System.out.println("recSearch for key(50) its index: " + ll.recSearch(50));
         System.out.println("Size of Linked List : " + size);
 
-        ll.reverse();
-        System.out.println("=== Reverse the LinkedList =====");
-        ll.printLL();
+        // ll.reverse();
+        // System.out.println("=== Reverse the LinkedList =====");
+        // ll.printLL();
 
+        System.out.println("=== Romove Nth node from End ===");
+        ll.printLL();
+        ll.deleteNthNodeFromEnd(3);
+        ll.printLL();
+   
     }
 }
