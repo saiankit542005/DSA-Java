@@ -2,7 +2,7 @@
 public class LinkedList {
     public static class Node {
         int data;
-        Node next;
+        Node next;// next pointer
 
         public Node(int data) {
             this.data = data;
@@ -213,7 +213,7 @@ public class LinkedList {
         head = prev;
     }
 
-    // ===============Find & Remove Nth node from End =================
+    // ===============Find & Remove Nth node from End =========
     public void deleteNthNodeFromEnd(int n) {
         // caulate size
         int sz = 0;
@@ -242,35 +242,88 @@ public class LinkedList {
         return;
     }
 
+    // =============== findMid() method =================
+    // Slow-Fast Approach
+    public Node findMid(Node head) {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next; // +1
+            fast = fast.next.next; // +2
+        }
+        return slow; // slow is my midNode
+    }
+
+    public boolean checkPalindrome() {
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        // step1 - find mid
+        Node midNode = findMid(head);
+
+        // step2 - reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node right = prev; // rigth half head
+        Node left = head;
+
+        // step3 - check left half & right half
+        while (right != null) {
+            if (left.data != right.data) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
-        ll.printLL();
-        ll.addFirst(20);
-        ll.addFirst(10);
-        ll.addLast(30);
-        ll.addLast(40);
-        ll.addMiddle(25, 2);
-        ll.printLL();
+        // ll.printLL();
+        // ll.addFirst(20);
+        // ll.addFirst(10);
+        // ll.addLast(30);
+        // ll.addLast(40);
+        // ll.addMiddle(25, 2);
+        // ll.printLL();
         // System.out.println("Remove First Node data : " + ll.removeFirst());
         // ll.printLL();
         // System.out.println("Remove Last Node data : " + ll.removeLast());
         // ll.printLL();
         // System.out.println("Remove Middle Node data : " + ll.removeMiddle(1));
         // ll.printLL();
-        System.out.println("Search for key(30) its index : " + ll.Search(30));
-        System.out.println("Search for key(90) its index: " + ll.Search(90));
-        System.out.println("recSearch for key(20) its index : " + ll.recSearch(20));
-        System.out.println("recSearch for key(50) its index: " + ll.recSearch(50));
-        System.out.println("Size of Linked List : " + size);
+        // System.out.println("Search for key(30) its index : " + ll.Search(30));
+        // System.out.println("Search for key(90) its index: " + ll.Search(90));
+        // System.out.println("recSearch for key(20) its index : " + ll.recSearch(20));
+        // System.out.println("recSearch for key(50) its index: " + ll.recSearch(50));
+        // System.out.println("Size of Linked List : " + size);
 
         // ll.reverse();
         // System.out.println("=== Reverse the LinkedList =====");
         // ll.printLL();
 
-        System.out.println("=== Romove Nth node from End ===");
+        // System.out.println("=== Romove Nth node from End ===");
+        // ll.printLL();
+        // ll.deleteNthNodeFromEnd(3);
+        // ll.printLL();
+
+        ll.addFirst(1);
+        ll.addFirst(2);
+        ll.addFirst(2);
+        ll.addFirst(1);
         ll.printLL();
-        ll.deleteNthNodeFromEnd(3);
-        ll.printLL();
-   
+
+        System.out.println(ll.checkPalindrome());
     }
 }
