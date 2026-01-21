@@ -321,7 +321,7 @@ public class LinkedList {
         ll.addFirst(1);
         ll.addFirst(2);
         ll.addFirst(2);
-        ll.addFirst(1);
+        // ll.addFirst(1);
         ll.printLL();
 
         System.out.println(ll.checkPalindrome());
