@@ -1,6 +1,12 @@
 package medium;
 
+/**
+ * Demonstrates K-Zipline Merge of two linked lists.
+ * Merges k nodes alternately from two different linked lists.
+ */
 public class KZiplineMerge {
+
+    // Node class for Integer Linked List.
     public static class Node {
         int val;
         Node next;
@@ -11,6 +17,7 @@ public class KZiplineMerge {
         }
     }
 
+    // Prints the first linked list
     public static void printLL() {
         Node temp = head;
 
@@ -21,10 +28,10 @@ public class KZiplineMerge {
         System.out.println("null");
     }
 
-    public static Node head; // ➡️ By default = null
-    public static Node tail; // ➡️ By default = null
-    public static int size; //
+    public static Node head;
+    public static Node tail;
 
+    // Node class for String Linked List
     public static class Node2 {
         String val;
         Node2 next;
@@ -35,6 +42,7 @@ public class KZiplineMerge {
         }
     }
 
+    // Prints the second linked list
     public static void printLL2() {
         Node2 temp = head2;
 
@@ -47,19 +55,28 @@ public class KZiplineMerge {
 
     public static Node2 head2;
     public static Node2 tail2;
-    public static int size2;
 
+    /**
+     * Performs K-Zipline Merge of two linked lists.
+     * Prints k nodes from first list, then k nodes from second list,
+     * repeatedly until both lists are exhausted.
+     *
+     * @param k Number of nodes to take alternately from each list
+     */
     public static void kZiplineMerge(int k) {
         Node temp = head;
         Node2 temp2 = head2;
 
         while (temp != null || temp2 != null) {
-            
-            for(int i = 0 ;i < k && temp != null;i++){
+
+            // Print k nodes from first list
+            for (int i = 0; i < k && temp != null; i++) {
                 System.out.print(temp.val + " -> ");
                 temp = temp.next;
             }
-            for(int j = 0 ;j < k && temp2 != null;j++){
+
+            // Print k nodes from second list
+            for (int j = 0; j < k && temp2 != null; j++) {
                 System.out.print(temp2.val + " -> ");
                 temp2 = temp2.next;
             }
@@ -69,8 +86,10 @@ public class KZiplineMerge {
 
     public static void main(String[] args) {
 
-        // ●​ Input: head1 = 1->2->3->4->5->6 , head2 = A->B->C->D, k = 2
-        // ●​ Output: 1->2->A->B->3->4->C->D->5->6
+        // Input: head1 = 1->2->3->4->5->6
+        // head2 = A->B->C->D
+        // k = 2
+        // Output: 1->2->A->B->3->4->C->D->5->6
 
         Node obj1 = new Node(1);
         Node obj2 = new Node(2);
@@ -84,11 +103,12 @@ public class KZiplineMerge {
         obj3.next = obj4;
         obj4.next = obj5;
         obj5.next = obj6;
-        head = obj1; // head point to obj1
+
+        head = obj1;
+
         System.out.println("Input : ");
         printLL();
 
-        // head2 = A->B->C->D
         Node2 char1 = new Node2("A");
         Node2 char2 = new Node2("B");
         Node2 char3 = new Node2("C");
@@ -97,9 +117,11 @@ public class KZiplineMerge {
         char1.next = char2;
         char2.next = char3;
         char3.next = char4;
+
         head2 = char1;
 
         printLL2();
+
         System.out.println("Output : ");
         int k = 2;
         kZiplineMerge(k);
