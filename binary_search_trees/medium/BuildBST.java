@@ -36,6 +36,23 @@ public class BuildBST {
         inorder(root.right);
     }
 
+    // =============== searchKey() method ===============
+    public boolean searchKey(TreeNode root, int key) {
+        if (root == null)
+            return false;
+
+        if (root.data == key)
+            return true;
+
+        if (root.data > key) {
+            // left subtree
+            return searchKey(root.left, key);
+        } else {
+            // right subtree
+            return searchKey(root.right, key);
+        }
+    }
+
     public static void main(String[] args) {
         // int values[] = { 5, 1, 3, 4, 2, 7 };
         int values[] = { 2, 3, 5, 7, 8, 1, 6, 4, 9 };
@@ -46,11 +63,18 @@ public class BuildBST {
         for (int i = 0; i < values.length; i++) {
             root = obj.insert(root, values[i]);
         }
-        
-        //In BST, inorder traversal give sorted order of the tree.
+
+        // In BST, inorder traversal give sorted order of the tree.
         System.out.println("==== Inorder Traversal ====");
         obj.inorder(root);
         System.out.println();
+
+        System.out.println("====== searchKey() =====");
+        if (obj.searchKey(root, 9)) {
+            System.out.println("Key found!");
+        } else {
+            System.out.println("Key Not found!");
+        }
 
     }
 }
